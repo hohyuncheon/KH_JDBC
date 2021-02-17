@@ -71,47 +71,48 @@ public class MemberMenu {
 				//5.회원 정보변경
 			case "5": 
 				updateMemberId = inputUpdateMemberId();
-				System.out.println(update);
+				Member m = memberController.selectId(updateMemberId);
 				
-				String choice2 = sc.next();
-				switch (choice2) {
-					case "1" : 
-						System.out.println("***암호변경***");
-						member = updateMemberPassword();
-						result = memberController.updateMemberPassword(updateMemberId, member);
-						// 3. int에 따른 분기처리(성공여부 메세지 호출하겠다는 소리.)
-						msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
-						displayMsg(msg);
-						break;
-					case "2" :
-						System.out.println("***이메일변경***");
-						member = updateMemberEmail();
-						result = memberController.updateMemberEmail(updateMemberId, member);
-						// 3. int에 따른 분기처리(성공여부 메세지 호출하겠다는 소리.)
-						msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
-						displayMsg(msg);
-						break;
-					case "3" :
-						System.out.println("***전화번호변경***");
-						member = updateMemberPhone();
-						result = memberController.updateMemberPhone(updateMemberId, member);
-						// 3. int에 따른 분기처리(성공여부 메세지 호출하겠다는 소리.)
-						msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
-						displayMsg(msg);
-						break;
-					case "4" :
-						System.out.println("***주소 변경***");
-						member = updateMemberAddress();
-						result = memberController.updateMemberAddress(updateMemberId, member);
-						// 3. int에 따른 분기처리(성공여부 메세지 호출하겠다는 소리.)
-						msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
-						displayMsg(msg);
-						break;
-					case "9" : 
-						System.out.println("***메인메뉴 돌아가기***");
-						break;
-					default:
-				}
+				
+				if(m!=null) {
+					System.out.println(update);
+					String choice2 = sc.next();
+					switch (choice2) {
+						case "1" : 
+							System.out.println("***암호변경***");
+							member = updateMemberPassword();
+							result = memberController.updateMemberPassword(updateMemberId, member);
+							msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
+							displayMsg(msg);
+							break;
+						case "2" :
+							System.out.println("***이메일변경***");
+							member = updateMemberEmail();
+							result = memberController.updateMemberEmail(updateMemberId, member);
+							msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
+							displayMsg(msg);
+							break;
+						case "3" :
+							System.out.println("***전화번호변경***");
+							member = updateMemberPhone();
+							result = memberController.updateMemberPhone(updateMemberId, member);
+							msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
+							displayMsg(msg);
+							break;
+						case "4" :
+							System.out.println("***주소 변경***");
+							member = updateMemberAddress();
+							result = memberController.updateMemberAddress(updateMemberId, member);
+							msg = result > 0 ? "회원 변경 성공!" : "회원 변경 실패!";
+							displayMsg(msg);
+							break;
+						case "9" : 
+							System.out.println("***메인메뉴 돌아가기***");
+							break;
+						default:
+						}
+				}else
+					System.out.println("저장된 회원이 없습니다");
 				
 				break;
 				//6.회원탈퇴
