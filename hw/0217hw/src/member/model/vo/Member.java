@@ -145,7 +145,7 @@ public class Member {
 	public void setDeleteDate(Date deleteDate) {
 		this.deleteDate = deleteDate;
 	}
-
+	//일반 전체조회에선 deleteDate가 안나오게한다.
 	@Override
 	public String toString() {
 		
